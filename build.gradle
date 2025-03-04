@@ -2,16 +2,18 @@ plugins {
     id 'java'
 }
 
-group = 'ru.stoloto'
-version = '1.0-SNAPSHOT'
-
 repositories {
     mavenCentral()
 }
 
 dependencies {
     testImplementation(
-            "com.codeborne:selenide:7.7.3"
-    )
+            "com.codeborne:selenide:7.7.3",
+            "org.junit.jupiter:junit-jupiter:5.12.0"
 
+    )
+}
+
+test {
+    useJUnitPlatform()
 }
