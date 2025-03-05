@@ -53,8 +53,9 @@ public class PracticeFormTests {
         $(".react-datepicker__month-select").selectOption(month);
         $(".react-datepicker__day--006").click();
         $("#subjectsInput").setValue(subject).pressEnter();
-        $(byText(checkbox1)).scrollIntoView(true).click();
-        $(byText(checkbox3)).scrollIntoView(true).click();
+        // правки по пункту 1:изменил селектор, изменил способ прокрутки
+        $("#hobbiesWrapper").$(byText(checkbox1)).scrollTo().click();
+        $("#hobbiesWrapper").$(byText(checkbox3)).click();
         $("#uploadPicture").uploadFromClasspath(uploadImage);
         $("#currentAddress").setValue(currentAddress);
         $("#state").click();
@@ -88,7 +89,7 @@ public class PracticeFormTests {
         $(".table-responsive").shouldHave(text(uploadImage));
         $(".table-responsive").shouldHave(text("Address\t"));
         $(".table-responsive").shouldHave(text(currentAddress));
-        $(".table-responsive").scrollIntoView(true).shouldHave(text("State and City\t"));
+        $(".table-responsive").scrollTo().shouldHave(text("State and City\t"));
         $(".table-responsive").shouldHave(text(state + " " + city));
     }
 }
