@@ -53,15 +53,14 @@ public class PracticeFormTests {
         $(".react-datepicker__month-select").selectOption(month);
         $(".react-datepicker__day--006").click();
         $("#subjectsInput").setValue(subject).pressEnter();
-        // правки по пункту 1:изменил селектор, изменил способ прокрутки
-        $("#hobbiesWrapper").$(byText(checkbox1)).scrollTo().click();
+        $("#hobbiesWrapper").$(byText(checkbox1)).scrollTo().click();   // поправил селектор по пункту 1
         $("#hobbiesWrapper").$(byText(checkbox3)).click();
         $("#uploadPicture").uploadFromClasspath(uploadImage);
         $("#currentAddress").setValue(currentAddress);
         $("#state").click();
-        $(byText(state)).click();
+        $("#stateCity-wrapper").$(byText(state)).click();   // поправил селектор по пункту 1
         $("#city").click();
-        $(byText(city)).click();
+        $("#stateCity-wrapper").$(byText(city)).click();    // поправил селектор по пункту 1
 
         // Подтверждаем регистрацию
         $("#submit").click();
@@ -71,25 +70,16 @@ public class PracticeFormTests {
         $x("/html/body/div[4]/div/div/div[2]/div/table/thead/tr/th[1]").shouldHave(text("Label"));
         $x("/html/body/div[4]/div/div/div[2]/div/table/thead/tr/th[2]").shouldHave(text("Values"));
 
-        $(".table-responsive").shouldHave(text("Student Name\t"));
-        $(".table-responsive").shouldHave(text(firstName + " " + lastName));
-        $(".table-responsive").shouldHave(text("Student Email\t"));
-        $(".table-responsive").shouldHave(text(userEmail));
-        $(".table-responsive").shouldHave(text("Gender\t"));
-        $(".table-responsive").shouldHave(text(gender));
-        $(".table-responsive").shouldHave(text("Mobile\t"));
-        $(".table-responsive").shouldHave(text(userNumber));
-        $(".table-responsive").shouldHave(text("Date of Birth\t"));
-        $(".table-responsive").shouldHave(text(day + " " + month + "," + year));
-        $(".table-responsive").shouldHave(text("Subjects\t"));
-        $(".table-responsive").shouldHave(text(subject));
-        $(".table-responsive").shouldHave(text("Hobbies\t"));
-        $(".table-responsive").shouldHave(text(checkbox1 + ", " + checkbox3));
-        $(".table-responsive").shouldHave(text("Picture\t"));
-        $(".table-responsive").shouldHave(text(uploadImage));
-        $(".table-responsive").shouldHave(text("Address\t"));
-        $(".table-responsive").shouldHave(text(currentAddress));
-        $(".table-responsive").scrollTo().shouldHave(text("State and City\t"));
-        $(".table-responsive").shouldHave(text(state + " " + city));
+        // Изменил способ проверки значений итоговой таблицы
+        $(".table-responsive").$(byText("Student Name")).parent().shouldHave(text(firstName + " " + lastName));
+        $(".table-responsive").$(byText("Student Email")).parent().shouldHave(text(userEmail));
+        $(".table-responsive").$(byText("Gender")).parent().shouldHave(text(gender));
+        $(".table-responsive").$(byText("Mobile")).parent().shouldHave(text(userNumber));
+        $(".table-responsive").$(byText("Date of Birth")).parent().shouldHave(text(day + " " + month + "," + year));
+        $(".table-responsive").$(byText("Subjects")).parent().shouldHave(text(subject));
+        $(".table-responsive").$(byText("Hobbies")).parent().shouldHave(text(checkbox1 + ", " + checkbox3));
+        $(".table-responsive").$(byText("Picture")).parent().shouldHave(text(uploadImage));
+        $(".table-responsive").$(byText("Address")).parent().shouldHave(text(currentAddress));
+        $(".table-responsive").$(byText("State and City")).parent().shouldHave(text(state + " " + city));
     }
 }
